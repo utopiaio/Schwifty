@@ -1,0 +1,16 @@
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Helvetica Neue", "Lucida Grande", sans-serif;
+  -webkit-font-smoothing: antialiased !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background-color: transparent;
+  color: #363636;
+  padding: 0;
+  margin: 0;
+}
