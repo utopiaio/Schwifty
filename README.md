@@ -1,3 +1,3 @@
 # Schwifty
 
-Let the playlist do the talking. Inspired by [@tmag's](https://github.com/tamg/jomnify) Jomnify
+Let the playlist do the talking. Inspired by @tmag's [Jomnify](https://github.com/tamg/jomnify)
