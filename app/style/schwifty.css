@@ -9,8 +9,24 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: 16px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  background-color: transparent;
-  color: #363636;
+  background-color: #0d0d0d;
+  color: #ffffff;
   padding: 0;
   margin: 0;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-dark {
+  color: #a0a0a0 !important;
+}
+
+.text-mute {
+  color: #6a6a6a !important;
+}
+
+.text-green {
+  color: #1db954 !important;
 }
