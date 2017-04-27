@@ -17,5 +17,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "animejs": "^2.0.2",
+    "normalize-css": "normalize.css#^6.0.0",
+    "localforage": "^1.5.0"
+  }
 }
