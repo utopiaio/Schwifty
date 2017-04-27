@@ -1,0 +1,21 @@
+{
+  "name": "schwifty",
+  "authors": [
+    "Moe Szyslak <moe.duffdude@gmail.com>"
+  ],
+  "description": "Get Schwifty",
+  "main": "index.html",
+  "keywords": [
+    "schwifty"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Schwifty",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
