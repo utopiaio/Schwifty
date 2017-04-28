@@ -1,0 +1,13 @@
+{
+  "name": "schwifty",
+  "version": "1.0.0",
+  "description": "Get Schwifty!",
+  "main": "index.js",
+  "repository": "git@github.com:moe-szyslak/Schwifty.git",
+  "author": "Moe Szyslak <moe.duffdude@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  }
+}
