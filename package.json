@@ -7,6 +7,9 @@
   "author": "Moe Szyslak <moe.duffdude@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "animejs": "^2.0.2",
+    "localforage": "^1.5.0",
+    "normalize.css": "^6.0.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   }
