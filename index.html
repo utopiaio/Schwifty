@@ -11,8 +11,7 @@
 
     <title>Schwifty</title>
 
-    <link rel="stylesheet" type="text/css" href="node_modules/normalize.css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="app/style/schwifty.css">
+    <link rel="stylesheet" type="text/css" href="build/bundle.css">
   </head>
 
   <body>
@@ -21,8 +20,9 @@
     <p class="text-mute">Schwifty!</p>
     <p class="text-green">Schwifty!</p>
 
-    <script type="text/javascript" src="node_modules/localforage/dist/localforage.min.js"></script>
-    <script type="text/javascript" src="node_modules/animejs/anime.min.js"></script>
-    <script type="module" src="app/js/schwifty.js"></script>
+    <button id="login">Spotify</button>
+
+    <script src="build/vendor.js"></script>
+    <script src="build/bundle.js"></script>
   </body>
 </html>

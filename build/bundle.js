@@ -1,8 +1,27 @@
-/* eslint no-console: 0 */
-/* global window, document, localforage, fetch */
+webpackJsonp([0],{
+
+/***/ 13:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(8);
 
 
-import 'App/sass/schwifty.scss';
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(13);
 
 console.log('HERE');
 
@@ -68,3 +87,9 @@ console.log('HERE');
 //     window.location = url;
 //   }, false);
 // })();
+/* eslint no-console: 0 */
+/* global window, document, localforage, fetch */
+
+/***/ })
+
+},[29]);
