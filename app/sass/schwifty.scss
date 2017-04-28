@@ -1,3 +1,9 @@
+$spotify-white: #ffffff;
+$spotify-dark: #1db954;
+$spotify-mute: #6a6a6a;
+$spotify-green: #1db954;
+$spotify-background: #0d0d0d;
+
 body {
   position: absolute;
   top: 0;
@@ -9,24 +15,24 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: 16px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  background-color: #0d0d0d;
-  color: #ffffff;
+  background-color: $spotify-background;
+  color: $spotify-white;
   padding: 0;
   margin: 0;
 }
 
 .text-white {
-  color: #ffffff !important;
+  color: $spotify-white !important;
 }
 
 .text-dark {
-  color: #a0a00 !important;
+  color: $spotify-dark !important;
 }
 
 .text-mute {
-  color: #6a6a6a !important;
+  color: $spotify-mute !important;
 }
 
 .text-green {
-  color: #1db954 !important;
+  color: $spotify-green !important;
 }
