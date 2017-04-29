@@ -1,71 +1,40 @@
 /* eslint no-console: 0 */
 /* global window, document, localforage, fetch */
+import 'notie/dist/notie.min.css';
+import 'normalize.css';
 
+import { confirm } from 'notie';
 
 import 'App/sass/schwifty.scss';
 import store from 'App/redux/store.js';
 
-console.log('HERE');
+import { asyncUserIsLoggedIn, authorizeSpotify, asyncUserBoot, logout } from 'App/redux/actions/user';
 
-// import hashParams from './hashParams.js';
-// import isAuthorized from './isAuthorized.js';
+store.subscribe(() => {
+});
 
-// console.log('here?');
+store
+  .dispatch(asyncUserIsLoggedIn())
+  .then(() => {
+    console.log('0', store.getState());
+  }, () => {
+    console.log('Not logged in');
+  });
 
-// (async () => {
-//   const clientID = '8ad7a6f78ef9487a92183ea076446e27';
-//   const redirectURI = 'http://schwifty.io';
-//   const state = `${Date.now()}`;
-//   const scope = 'playlist-modify-public';
-//   const url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(clientID)}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectURI)}&state=${encodeURIComponent(state)}`;
+document.querySelector('#search-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  store.dispatch(asyncUserBoot(true));
+}, false);
 
-//   const HASH_PARAMS = hashParams(window.location.hash);
+document.querySelector('#login').addEventListener('click', () => {
+  authorizeSpotify();
+}, false);
 
-//   const LF_AUTH_KEY = 'AUTH_KEY';
-
-//   localforage.config({
-//     name: 'Schwifty',
-//     storeName: 'schwifty',
-//     version: '1.0',
-//     description: 'Get Schwifty',
-//   });
-
-//   try {
-//     const lfAppState = await localforage.getItem(LF_AUTH_KEY);
-
-//     // no auth key found in store...
-//     if (lfAppState === null) {
-//       if (isAuthorized(HASH_PARAMS)) {
-//         localforage.setItem(LF_AUTH_KEY, Object.assign({}, HASH_PARAMS, { issued_on: Date.now() }));
-//         console.log('LOGGED IN');
-//       }
-//     } else if (isAuthorized(lfAppState)) {
-//       const user = await fetch('https://api.spotify.com/v1/me', {
-//         headers: {
-//           Authorization: `${lfAppState.token_type} ${lfAppState.access_token}`,
-//         },
-//       }).then(response => response.json());
-
-//       const playlist = await fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`, {
-//         method: 'POST',
-//         headers: {
-//           Authorization: `${lfAppState.token_type} ${lfAppState.access_token}`,
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ name: 'DUDE', description: 'DUDE description' }),
-//       }).then(response => response.json());
-
-//       console.log(playlist);
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-
-//   // https://api.spotify.com/v1/me
-//   // 'Authorization': 'Bearer ' + access_token
-//   // console.log(window.location.hash, window.location.hash.includes('#access_token'));
-
-//   document.querySelector('#login').addEventListener('click', () => {
-//     window.location = url;
-//   }, false);
-// })();
+document.querySelector('#logout').addEventListener('click', () => {
+  confirm({
+    text: 'Logout?',
+    submitCallback() {
+      logout();
+    },
+  });
+}, false);
