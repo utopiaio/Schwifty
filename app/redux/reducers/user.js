@@ -1,9 +1,12 @@
-import { USER } from 'App/redux/constants/user.js';
+import { ME, TOKEN } from 'App/redux/constants/user.js';
 
-function reducer(state = null, action) {
+function reducer(state = { me: null, token: null }, action) {
   switch (action.type) {
-    case USER:
-      return action.payload;
+    case ME:
+      return Object.assign({}, state, { me: action.payload });
+
+    case TOKEN:
+      return Object.assign({}, state, { token: action.payload });
 
     default:
       return state;

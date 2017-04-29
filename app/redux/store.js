@@ -10,7 +10,7 @@ import searching from 'App/redux/reducers/searching.js';
 
 const store = createStore(
   combineReducers({ searching, user, playlist, match }),
-  { user: null, searching: false, playlist: [], match: [] },
+  { user: { token: null, me: null }, searching: false, playlist: [], match: [] },
   window.devToolsExtension
     ? compose(applyMiddleware(thunk), window.devToolsExtension())
     : applyMiddleware(thunk),

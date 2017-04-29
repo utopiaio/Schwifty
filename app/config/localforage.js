@@ -5,7 +5,8 @@ const config = {
   STORE_NAME: 'schwifty',
   DESCRIPTION: 'Get Schwifty!',
   LF_STORE: {
-    USER: 'USER',
+    TOKEN: 'TOKEN',
+    ME: 'ME',
   },
 };
 

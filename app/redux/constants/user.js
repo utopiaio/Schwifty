@@ -1,5 +1,7 @@
-const USER = 'USER';
+const ME = 'ME';
+const TOKEN = 'TOKEN';
 
 module.exports = {
-  USER,
+  ME,
+  TOKEN,
 };
