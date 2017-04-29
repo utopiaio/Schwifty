@@ -58,6 +58,10 @@ body {
     opacity: 0.5;
     cursor: wait;
   }
+
+  &-200 {
+    max-width: 200px;
+  }
 }
 
 .container {
