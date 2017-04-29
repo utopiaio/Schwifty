@@ -1,4 +1,4 @@
-import { SEARCHING } from 'App/redux/constants/search.js';
+import { SEARCHING } from 'App/redux/constants/searching.js';
 
 function reducer(state = false, action) {
   switch (action.type) {
