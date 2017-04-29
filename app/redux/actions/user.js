@@ -1,4 +1,4 @@
-/* global window, fetch */
+/* global window, document, fetch */
 /* eslint no-console: 0 */
 
 import localforage from 'localforage';
@@ -59,6 +59,12 @@ function asyncUserIsLoggedIn() {
 
         localforage.setItem(LF_STORE.TOKEN, token);
         localforage.setItem(LF_STORE.ME, moi);
+
+        document.querySelector('#profile-username').innerHTML = moi.id;
+        if (moi.images.length > 0) {
+          document.querySelector('#profile-image').setAttribute('src', moi.images[0].url);
+        }
+
         dispatch(userToken(token));
         dispatch(userMe(moi));
         resolve();
