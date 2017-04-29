@@ -3,6 +3,7 @@
 
 
 import 'App/sass/schwifty.scss';
+import store from 'App/redux/store.js';
 
 console.log('HERE');
 
