@@ -24,6 +24,8 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .text-white {
@@ -59,8 +61,9 @@ body {
     cursor: wait;
   }
 
-  &-200 {
-    max-width: 200px;
+  &-auth {
+    padding-left: 3em;
+    padding-right: 3em;
   }
 }
 
@@ -75,8 +78,10 @@ body {
   }
 
   &_playlist {
+    position: relative;
     border: 1px solid green;
     flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -104,4 +109,44 @@ body {
     border-radius: 0 1em 1em 0;
     width: 100%;
   }
+}
+
+.profile {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100vh);
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  &__logout {
+    margin-top: 1em;
+  }
+
+  &__image {
+    width: 75px;
+    border-radius: 75px;
+    height: auto;
+  }
+
+  &__username {
+    margin: 0;
+    margin-top: .25em;
+  }
+}
+
+#login-container {
+  position: absolute;
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform: translateY(100vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
