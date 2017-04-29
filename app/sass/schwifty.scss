@@ -4,6 +4,10 @@ $spotify-mute: #a0a0a0;
 $spotify-green: #1db954;
 $spotify-background: #0d0d0d;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   position: absolute;
   top: 0;
