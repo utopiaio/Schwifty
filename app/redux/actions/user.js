@@ -60,7 +60,7 @@ function asyncUserIsLoggedIn() {
         localforage.setItem(LF_STORE.TOKEN, token);
         localforage.setItem(LF_STORE.ME, moi);
         dispatch(userToken(token));
-        dispatch(userMe(me));
+        dispatch(userMe(moi));
         resolve();
       } catch (e) {
         // clearing any previously set values inside LF...
