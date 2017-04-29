@@ -101,36 +101,10 @@ function asyncUserIsLoggedIn() {
   });
 }
 
-function asyncUserTokenUpdate(info) {
-  return (dispatch) => {
-    localforage
-      .setItem(LF_STORE.TOKEN, info)
-      .then((updatedInfo) => {
-        dispatch(userToken(updatedInfo));
-      }, (err) => {
-        console.warn('Unable to save updated info to LF', err);
-      });
-  };
-}
-
-function asyncUserMeUpdate(info) {
-  return (dispatch) => {
-    localforage
-      .setItem(LF_STORE.ME, info)
-      .then((updatedInfo) => {
-        dispatch(userMe(updatedInfo));
-      }, (err) => {
-        console.warn('Unable to save updated info to LF', err);
-      });
-  };
-}
-
 module.exports = {
   userToken,
   userMe,
   asyncUserIsLoggedIn,
-  asyncUserTokenUpdate,
-  asyncUserMeUpdate,
   authorizeSpotify,
   logout,
 };
