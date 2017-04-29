@@ -49,7 +49,7 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           presets: [
-            ['env', { targets: { browsers: ['last 2 versions', 'safari >= 10'] } }],
+            ['env', { targets: { browsers: ['safari >= 10'] } }],
           ],
         },
       },
