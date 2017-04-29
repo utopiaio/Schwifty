@@ -3,11 +3,13 @@
 import 'notie/dist/notie.min.css';
 import 'normalize.css';
 
+import anime from 'animejs';
 import { confirm } from 'notie';
 
 import 'App/sass/schwifty.scss';
 import store from 'App/redux/store.js';
 
+import { showElement, hideElement } from 'App/redux/actions/dom';
 import { asyncUserIsLoggedIn, authorizeSpotify, asyncUserBoot, logout } from 'App/redux/actions/user';
 
 store.subscribe(() => {
@@ -16,9 +18,10 @@ store.subscribe(() => {
 store
   .dispatch(asyncUserIsLoggedIn())
   .then(() => {
-    console.log('0', store.getState());
+    showElement('#profile');
+    console.log(store.getState());
   }, () => {
-    console.log('Not logged in');
+    showElement('#login-container');
   });
 
 document.querySelector('#search-form').addEventListener('submit', (e) => {

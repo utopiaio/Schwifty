@@ -37,8 +37,15 @@
 
     <!-- playlist -->
     <div class="container container_playlist">
-      <button id="login" class="button button-200">Login</button>
-      <button id="logout" class="button button-200">Logout</button>
+      <div id="profile" class="profile">
+        <img id="profile-image" class="profile__image" src="app/static/placeholder.png">
+        <p id="profile-username" class="profile__username text-mute"></p>
+        <button id="logout" class="button button-auth profile__logout">Logout</button>
+      </div>
+
+      <div id="login-container">
+        <button id="login" class="button button-auth">Login</button>
+      </div>
     </div>
     <!-- ./ playlist -->
 
