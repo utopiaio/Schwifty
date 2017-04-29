@@ -23,6 +23,7 @@ body {
   color: $spotify-white;
   padding: 0;
   margin: 0;
+  display: flex;
 }
 
 .text-white {
@@ -39,4 +40,64 @@ body {
 
 .text-green {
   color: $spotify-green !important;
+}
+
+.button {
+  border: none;
+  outline: none;
+  background-color: $spotify-green;
+  color: $spotify-white;
+  cursor: pointer;
+  border-radius: 1em;
+  font-size: 1em;
+  padding: 0.5em;
+  line-height: 1.25em;
+  transition: all ease 500ms;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: wait;
+  }
+}
+
+.container {
+  flex: 1 0 50%;
+  padding: 1em;
+  display: flex;
+
+  &_search {
+    border: 1px solid red;
+    flex-direction: column;
+  }
+
+  &_playlist {
+    border: 1px solid green;
+    flex-direction: column;
+  }
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  &__input {
+    -webkit-appearance: none;
+    flex: 1 0 80%;
+    outline: none;
+    border-radius: 1em 0 0 1em;
+    border: 0 solid transparent;
+    font-size: 1.25em;
+    padding: 0;
+    padding-left: 1em;
+    color: $spotify-dark;
+    width: 100%;
+  }
+
+  &__button {
+    flex: 1 0 20%;
+    font-size: 1.2em;
+    border-radius: 0 1em 1em 0;
+    width: 100%;
+  }
 }

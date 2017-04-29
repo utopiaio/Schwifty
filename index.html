@@ -15,12 +15,30 @@
   </head>
 
   <body>
-    <p class="text-white">Schwifty!</p>
-    <p class="text-dark">Schwifty!</p>
-    <p class="text-mute">Schwifty!</p>
-    <p class="text-green">Schwifty!</p>
+    <!-- search -->
+    <div class="container container_search">
+      <form id="search-form" class="search" novalidate>
+        <input
+          type="text"
+          id="search-input"
+          class="search__input"
+          placeholder="Get Schwifty!"
+          required
+        >
 
-    <button id="login">Spotify</button>
+        <button
+          type="submit"
+          id="search-button"
+          class="button search__button"
+        >Search</button>
+      </form>
+    </div>
+    <!-- ./ search -->
+
+    <!-- playlist -->
+    <div class="container container_playlist">
+    </div>
+    <!-- ./ playlist -->
 
     <script src="build/vendor.js"></script>
     <script src="build/bundle.js"></script>
