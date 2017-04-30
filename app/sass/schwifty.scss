@@ -99,7 +99,7 @@ body {
     -webkit-appearance: none;
     flex: 1 0 80%;
     outline: none;
-    border-radius: 1em 0 0 1em;
+    border-radius: 2em 0 0 2em;
     border: 0 solid transparent;
     font-size: 1.25em;
     padding: 0;
@@ -111,7 +111,7 @@ body {
   &__button {
     flex: 1 0 20%;
     font-size: 1.2em;
-    border-radius: 0 1em 1em 0;
+    border-radius: 0 2em 2em 0;
     width: 100%;
   }
 }
