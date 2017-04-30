@@ -8,6 +8,10 @@ $spotify-background: #0d0d0d;
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   position: absolute;
   top: 0;
