@@ -66,7 +66,7 @@ body {
 
   &[disabled] {
     opacity: 0.5;
-    cursor: wait;
+    cursor: not-allowed;
   }
 
   &-auth {
@@ -237,12 +237,15 @@ body {
 
 #login-container {
   position: absolute;
-  top: 1.25em;
-  left: 0;
+  top: 0;
   right: 0;
-  margin: 0 auto;
+  bottom: 0;
+  left: 0;
   transform: translateY(100vh);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 0 1em;
+  text-align: center;
 }

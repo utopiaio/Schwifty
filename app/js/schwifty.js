@@ -24,6 +24,7 @@ store
   .then(() => {
     showElement('#profile');
   }, () => {
+    document.querySelector('#search-button').setAttribute('disabled', 'disabled');
     showElement('#login-container');
   });
 
