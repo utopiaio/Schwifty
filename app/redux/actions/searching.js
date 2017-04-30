@@ -17,8 +17,10 @@ function asyncSearching(payload) {
 
     if (payload === true) {
       document.querySelector('#search-button').setAttribute('disabled', 'disabled');
+      document.querySelector('#schwifty-411').innerHTML = 'Getting Schwifty...';
     } else {
       document.querySelector('#search-button').removeAttribute('disabled');
+      document.querySelector('#schwifty-411').innerHTML = '';
     }
 
     dispatch(searching(payload));

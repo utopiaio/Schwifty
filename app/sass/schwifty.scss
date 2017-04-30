@@ -76,16 +76,15 @@ body {
   display: flex;
 
   &_search {
-    flex: 1 0 60%;
-    border: 1px solid red;
+    flex: 1 0 50%;
+    border-right: 1px solid rgba(160, 160, 160, 0.25);;
     flex-direction: column;
   }
 
   &_playlist {
-    flex: 1 0 40%;
+    flex: 1 0 50%;
     position: relative;
-    border: 1px solid green;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 }
@@ -94,6 +93,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
+  flex: 0 0 44px;
 
   &__input {
     -webkit-appearance: none;
@@ -114,6 +114,91 @@ body {
     border-radius: 0 1em 1em 0;
     width: 100%;
   }
+}
+
+.match {
+  flex: 1 0 50vh;
+  overflow-y: scroll;
+  margin-top: 1em;
+  -webkit-overflow-scrolling: touch;
+}
+
+.track-list {
+  .track:first-child {
+    border-top: none;
+  }
+
+  .track:last-child {
+    margin-bottom: 2em;
+  }
+}
+
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(160, 160, 160, 0.5);
+  padding-top: 0.25em;
+
+  &__image {
+    flex: 0 1 15%;
+
+    img {
+      width: 100%;
+      min-height: 50px;
+      height: auto;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1em;
+    flex: 1 1 auto;
+
+    .ashamed {
+      flex: 1 1 auto;
+    }
+  }
+
+  .ashamed-two-times {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: 1.5em;
+  }
+
+  &__artist {
+    font-size: 0.9em;
+  }
+
+  &__duration {
+    flex: 0 1 auto;
+    font-size: 0.9em;
+    text-align: right;
+  }
+
+  &__explicit {
+    background-color: $spotify-mute;
+    color: $spotify-background;
+    padding: 0.3em 0.4em;
+    margin-right: 0.75em;
+    font-size: 0.75em;
+    border-radius: 4px;
+  }
+}
+
+#schwifty-411 {
+  width: 100%;
+  text-align: center;
+  padding: 0.5em 0;
+  color: $spotify-mute;
+  font-size: 1.25em;
 }
 
 .profile {
