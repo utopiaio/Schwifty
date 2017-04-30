@@ -24,6 +24,7 @@ const commonPlugins = [
 module.exports = {
   entry: {
     vendor: [
+      'lodash',
       'animejs',
       'localforage',
       'notie',

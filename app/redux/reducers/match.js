@@ -1,4 +1,4 @@
-import { MATCH } from 'App/redux/constants/match.js';
+import { MATCH } from 'App/redux/constants/match';
 
 function reducer(state = [], action) {
   switch (action.type) {
