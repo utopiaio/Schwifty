@@ -75,6 +75,17 @@ document.querySelector('#login').addEventListener('click', () => {
   authorizeSpotify();
 }, false);
 
+document.querySelector('#create-playlist').addEventListener('click', () => {
+  const currentMatch = store.getState().match;
+
+  if (currentMatch.length === 0) {
+    alert({
+      type: 'warning',
+      text: "I can't create an empty playlist. You're being very un-Schwifty 😒",
+    });
+  }
+}, false);
+
 document.querySelector('#logout').addEventListener('click', () => {
   confirm({
     text: 'Logout?',

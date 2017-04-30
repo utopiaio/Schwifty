@@ -227,6 +227,12 @@ body {
     margin: 0;
     margin-top: .25em;
   }
+
+  &__playlist {
+    margin-top: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
 }
 
 #login-container {

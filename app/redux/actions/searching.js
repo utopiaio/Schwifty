@@ -18,6 +18,7 @@ function asyncSearching(payload) {
 
     if (payload === true) {
       document.querySelector('#search-button').setAttribute('disabled', 'disabled');
+      document.querySelector('#create-playlist').setAttribute('disabled', 'disabled');
       document.querySelector('#schwifty-411').innerHTML = 'Getting Schwifty...';
 
       // clearing match list...
@@ -30,6 +31,7 @@ function asyncSearching(payload) {
       }
     } else {
       document.querySelector('#search-button').removeAttribute('disabled');
+      document.querySelector('#create-playlist').removeAttribute('disabled');
       document.querySelector('#schwifty-411').innerHTML = '';
     }
 
