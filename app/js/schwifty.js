@@ -3,6 +3,7 @@
 import 'notie/dist/notie.min.css';
 import 'normalize.css';
 
+import anime from 'animejs';
 import { alert, confirm } from 'notie';
 
 import 'App/sass/schwifty.scss';
@@ -39,7 +40,7 @@ document.querySelector('#search-form').addEventListener('submit', async (e) => {
     store.dispatch(match(matches));
 
     document.querySelector('#schwifty-411').innerHTML = `Schwifty got <b>${matches.length}</b> track${matches.length > 1 ? 's' : ''}`;
-    document.querySelector('.match').innerHTML = `<div class="track-list">${matches.map(m => `<div class="track">
+    document.querySelector('.match').innerHTML = `<div class="track-list">${matches.map(m => `<div class="track" style="transform: translateY(100vh);">
       <div class="track__image">
         <img src="${m.album.images[1] ? m.album.images[1].url : 'app/static/placeholder.png'}" />
       </div>
@@ -56,6 +57,12 @@ document.querySelector('#search-form').addEventListener('submit', async (e) => {
         <div class="track__duration text-mute">${time(m.duration_ms)}</div>
       </div>
     </div>`).join('')}</div>`;
+
+    anime({
+      targets: '.track-list .track',
+      translateY: ['100vh', '0vh'],
+      delay: (el, i) => i * 100,
+    });
   }, (err) => {
     alert({
       type: 'error',
