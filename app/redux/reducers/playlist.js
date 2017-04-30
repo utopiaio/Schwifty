@@ -8,7 +8,7 @@ function reducer(state = [], action) {
     case PLAYLIST_EDIT:
       return [
         ...state.slice(0, action.payload.index),
-        Object.assign({}, state[action.payload.index], action.payload),
+        Object.assign({}, state[action.payload.index], action.payload.edit),
         ...state.slice(action.payload.index + 1),
       ];
 
