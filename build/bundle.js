@@ -253,6 +253,17 @@ document.querySelector('#create-playlist').addEventListener('click', () => {
         type: 'success',
         text: `Playlist <b>${value}</b> has been created`
       });
+
+      document.querySelector('#schwifty-411').innerHTML = 'Get Schwifty!';
+
+      (0, _animejs2.default)({
+        targets: '.track-list .track',
+        translateY: ['0vh', '100vh'],
+        delay: (el, i) => i * 100,
+        complete() {
+          _store2.default.dispatch((0, _match.match)([]));
+        }
+      });
     }, err => {
       (0, _notie.alert)({
         type: 'error',
