@@ -1,6 +1,6 @@
 import anime from 'animejs';
 
-function showElement(targets, duration = 750, easing = 'easeOutElastic') {
+function showElement(targets, duration = 1000, easing = 'easeOutElastic') {
   return new Promise((resolve) => {
     anime({
       targets,
@@ -14,7 +14,7 @@ function showElement(targets, duration = 750, easing = 'easeOutElastic') {
   });
 }
 
-function hideElement(targets, duration = 750, easing = 'easeInElastic') {
+function hideElement(targets, duration = 1000, easing = 'easeInElastic') {
   return new Promise((resolve) => {
     anime({
       targets,
