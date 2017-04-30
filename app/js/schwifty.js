@@ -4,7 +4,7 @@ import 'notie/dist/notie.min.css';
 import 'normalize.css';
 
 import anime from 'animejs';
-import { alert, confirm } from 'notie';
+import { alert, confirm, input } from 'notie';
 
 import 'App/sass/schwifty.scss';
 import store from 'App/redux/store.js';
@@ -13,6 +13,7 @@ import { showElement } from 'App/redux/actions/dom';
 import { search } from 'App/redux/actions/search';
 import { asyncUserIsLoggedIn, authorizeSpotify, logout } from 'App/redux/actions/user';
 import { match } from 'App/redux/actions/match';
+import { asyncAdd } from 'App/redux/actions/playlist';
 import time from 'App/js/time';
 
 store.subscribe(() => {
@@ -83,7 +84,42 @@ document.querySelector('#create-playlist').addEventListener('click', () => {
       type: 'warning',
       text: "I can't create an empty playlist. You're being very un-Schwifty 😒",
     });
+
+    return;
   }
+
+  input({
+    text: 'Playlist Name',
+    submitText: 'Create Playlist',
+    cancelText: 'Not Today',
+    minlength: '3',
+    placeholder: 'To: Future-X',
+  }, (value) => {
+    if (value.length === 0) {
+      alert({
+        type: 'info',
+        text: 'ABORTED!',
+      });
+
+      return;
+    }
+
+    store
+      .dispatch(asyncAdd(value, store.getState().match))
+      .then(() => {
+        alert({
+          type: 'success',
+          text: `Playlist <b>${value}</b> has been created`,
+        });
+      }, (err) => {
+        alert({
+          type: 'error',
+          text: 'Unable to create the playlist 😔',
+        });
+
+        console.error('DAMN IT!', err);
+      });
+  });
 }, false);
 
 document.querySelector('#logout').addEventListener('click', () => {
