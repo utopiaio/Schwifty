@@ -30,6 +30,10 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+
+  @media(min-width: 1024px) {
+    padding: 0 15%;
+  }
 }
 
 .text-white {
@@ -76,13 +80,13 @@ body {
   display: flex;
 
   &_search {
-    flex: 1 0 50%;
+    flex: 1 0 70%;
     border-right: 1px solid rgba(160, 160, 160, 0.25);;
     flex-direction: column;
   }
 
   &_playlist {
-    flex: 1 0 50%;
+    flex: 1 0 30%;
     position: relative;
     flex-direction: row;
     align-items: center;
