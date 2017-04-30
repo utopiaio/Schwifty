@@ -3,14 +3,14 @@
 import 'notie/dist/notie.min.css';
 import 'normalize.css';
 
-import anime from 'animejs';
 import { confirm } from 'notie';
 
 import 'App/sass/schwifty.scss';
 import store from 'App/redux/store.js';
 
-import { showElement, hideElement } from 'App/redux/actions/dom';
-import { asyncUserIsLoggedIn, authorizeSpotify, asyncUserBoot, logout } from 'App/redux/actions/user';
+import { showElement } from 'App/redux/actions/dom';
+import { search } from 'App/redux/actions/search';
+import { asyncUserIsLoggedIn, authorizeSpotify, logout } from 'App/redux/actions/user';
 
 store.subscribe(() => {
 });
@@ -19,14 +19,13 @@ store
   .dispatch(asyncUserIsLoggedIn())
   .then(() => {
     showElement('#profile');
-    console.log(store.getState());
   }, () => {
     showElement('#login-container');
   });
 
-document.querySelector('#search-form').addEventListener('submit', (e) => {
+document.querySelector('#search-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  store.dispatch(asyncUserBoot(true));
+  search(document.querySelector('#search-input').value);
 }, false);
 
 document.querySelector('#login').addEventListener('click', () => {
