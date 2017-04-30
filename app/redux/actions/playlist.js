@@ -2,7 +2,6 @@
 /* eslint no-console: 0 */
 
 import { PLAYLIST_ADD, PLAYLIST_REMOVE, PLAYLIST_EDIT } from 'App/redux/constants/playlist';
-import { asyncSearching } from 'App/redux/actions/searching';
 
 function add(payload) {
   return {
