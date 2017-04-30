@@ -68,16 +68,17 @@ body {
 }
 
 .container {
-  flex: 1 0 50%;
   padding: 1em;
   display: flex;
 
   &_search {
+    flex: 1 0 60%;
     border: 1px solid red;
     flex-direction: column;
   }
 
   &_playlist {
+    flex: 1 0 40%;
     position: relative;
     border: 1px solid green;
     flex-direction: column;
