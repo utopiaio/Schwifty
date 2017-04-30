@@ -86,6 +86,7 @@ body {
     position: relative;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
   }
 }
 
@@ -202,16 +203,11 @@ body {
 }
 
 .profile {
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transform: translateY(100vh);
-  top: 1em;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
 
   &__logout {
     margin-top: 1em;
