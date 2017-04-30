@@ -482,6 +482,9 @@ body {
   .button-auth {
     padding-left: 3em;
     padding-right: 3em; }
+  .button-danger {
+    background-color: #e74c3c;
+    color: #ffffff; }
 
 .container {
   padding: 1em;
@@ -586,7 +589,7 @@ body {
   justify-content: center;
   transform: translateY(100vh); }
   .profile__logout {
-    margin-top: 1em; }
+    margin-top: 2em; }
   .profile__image {
     width: 75px;
     border-radius: 75px;

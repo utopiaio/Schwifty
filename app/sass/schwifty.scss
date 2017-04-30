@@ -73,6 +73,11 @@ body {
     padding-left: 3em;
     padding-right: 3em;
   }
+
+  &-danger {
+    background-color: #e74c3c;
+    color: $spotify-white;
+  }
 }
 
 .container {
@@ -214,7 +219,7 @@ body {
   transform: translateY(100vh);
 
   &__logout {
-    margin-top: 1em;
+    margin-top: 2em;
   }
 
   &__image {
