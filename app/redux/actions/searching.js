@@ -27,6 +27,9 @@ function asyncSearching(payload) {
           targets: '.track-list .track',
           translateY: ['0vh', '100vh'],
           delay: (el, i) => i * 100,
+          complete() {
+            document.querySelector('.match').innerHTML = '';
+          },
         });
       }
     } else {
