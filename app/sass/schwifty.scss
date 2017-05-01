@@ -3,6 +3,7 @@ $spotify-dark: #6a6a6a;
 $spotify-mute: #a0a0a0;
 $spotify-green: #1db954;
 $spotify-background: #0d0d0d;
+$mobile: 768px;
 
 * {
   box-sizing: border-box;
@@ -30,9 +31,13 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  padding: 0 15%;
 
-  @media(min-width: 1024px) {
-    padding: 0 15%;
+  @media(max-width: $mobile) {
+    padding: 0;
+    overflow-y: scroll;
+    flex-direction: column;
+    height: auto;
   }
 }
 
@@ -84,10 +89,18 @@ body {
   padding: 1em;
   display: flex;
 
+  @media(max-width: $mobile) {
+    display: block;
+  }
+
   &_search {
-    flex: 1 0 70%;
-    border-right: 1px solid rgba(160, 160, 160, 0.25);;
+    flex: 1 1 70%;
+    border-right: 1px solid rgba(160, 160, 160, 0.25);
     flex-direction: column;
+
+    @media(max-width: $mobile) {
+      flex: 1 1 10%;
+    }
   }
 
   &_playlist {
@@ -107,7 +120,7 @@ body {
 
   &__input {
     -webkit-appearance: none;
-    flex: 1 0 80%;
+    flex: 0 1 80%;
     outline: none;
     border-radius: 2em 0 0 2em;
     border: 0 solid transparent;
@@ -127,7 +140,7 @@ body {
 }
 
 .match {
-  flex: 1 1 50vh;
+  flex: 1 1 auto;
   overflow-y: scroll;
   margin-top: 1em;
   -webkit-overflow-scrolling: touch;
@@ -150,8 +163,16 @@ body {
   border-top: 1px solid rgba(160, 160, 160, 0.5);
   padding: 1em 0;
 
+  @media(max-width: $mobile) {
+    font-size: 0.8em;
+  }
+
   &__image {
     flex: 0 1 15%;
+
+    @media(max-width: $mobile) {
+      flex: 0 1 20%;
+    }
 
     img {
       width: 100%;
@@ -209,6 +230,10 @@ body {
   padding: 0.5em 0;
   color: $spotify-mute;
   font-size: 1.25em;
+
+  @media(max-width: $mobile) {
+    font-size: 0.8em;
+  }
 }
 
 .profile {
@@ -253,4 +278,8 @@ body {
   justify-content: center;
   padding: 0 1em;
   text-align: center;
+
+  @media(max-width: $mobile) {
+    justify-content: flex-start;
+  }
 }

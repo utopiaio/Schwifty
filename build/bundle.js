@@ -154,9 +154,11 @@ _store2.default.subscribe(() => {});
 
 _store2.default.dispatch((0, _user.asyncUserIsLoggedIn)()).then(() => {
   (0, _dom.showElement)('#profile');
+  document.querySelector('#login-container').remove();
 }, () => {
-  document.querySelector('#search-button').setAttribute('disabled', 'disabled');
   (0, _dom.showElement)('#login-container');
+  document.querySelector('#search-button').setAttribute('disabled', 'disabled');
+  document.querySelector('#profile').remove();
 });
 
 document.querySelector('#search-form').addEventListener('submit', (() => {
@@ -798,7 +800,10 @@ function asyncSearching(payload) {
         (0, _animejs2.default)({
           targets: '.track-list .track',
           translateY: ['0vh', '100vh'],
-          delay: (el, i) => i * 100
+          delay: (el, i) => i * 100,
+          complete() {
+            document.querySelector('.match').innerHTML = '';
+          }
         });
       }
     } else {

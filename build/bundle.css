@@ -448,10 +448,14 @@ body {
   margin: 0;
   display: flex;
   height: 100vh;
-  overflow: hidden; }
-  @media (min-width: 1024px) {
+  overflow: hidden;
+  padding: 0 15%; }
+  @media (max-width: 768px) {
     body {
-      padding: 0 15%; } }
+      padding: 0;
+      overflow-y: scroll;
+      flex-direction: column;
+      height: auto; } }
 
 .text-white {
   color: #ffffff !important; }
@@ -489,10 +493,16 @@ body {
 .container {
   padding: 1em;
   display: flex; }
+  @media (max-width: 768px) {
+    .container {
+      display: block; } }
   .container_search {
-    flex: 1 0 70%;
+    flex: 1 1 70%;
     border-right: 1px solid rgba(160, 160, 160, 0.25);
     flex-direction: column; }
+    @media (max-width: 768px) {
+      .container_search {
+        flex: 1 1 10%; } }
   .container_playlist {
     flex: 1 0 30%;
     position: relative;
@@ -507,7 +517,7 @@ body {
   flex: 0 0 44px; }
   .search__input {
     -webkit-appearance: none;
-    flex: 1 0 80%;
+    flex: 0 1 80%;
     outline: none;
     border-radius: 2em 0 0 2em;
     border: 0 solid transparent;
@@ -523,7 +533,7 @@ body {
     width: 100%; }
 
 .match {
-  flex: 1 1 50vh;
+  flex: 1 1 auto;
   overflow-y: scroll;
   margin-top: 1em;
   -webkit-overflow-scrolling: touch; }
@@ -540,8 +550,14 @@ body {
   align-items: center;
   border-top: 1px solid rgba(160, 160, 160, 0.5);
   padding: 1em 0; }
+  @media (max-width: 768px) {
+    .track {
+      font-size: 0.8em; } }
   .track__image {
     flex: 0 1 15%; }
+    @media (max-width: 768px) {
+      .track__image {
+        flex: 0 1 20%; } }
     .track__image img {
       width: 100%;
       min-height: 50px;
@@ -581,6 +597,9 @@ body {
   padding: 0.5em 0;
   color: #a0a0a0;
   font-size: 1.25em; }
+  @media (max-width: 768px) {
+    #schwifty-411 {
+      font-size: 0.8em; } }
 
 .profile {
   display: flex;
@@ -615,3 +634,6 @@ body {
   justify-content: center;
   padding: 0 1em;
   text-align: center; }
+  @media (max-width: 768px) {
+    #login-container {
+      justify-content: flex-start; } }

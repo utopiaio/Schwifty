@@ -23,9 +23,11 @@ store
   .dispatch(asyncUserIsLoggedIn())
   .then(() => {
     showElement('#profile');
+    document.querySelector('#login-container').remove();
   }, () => {
-    document.querySelector('#search-button').setAttribute('disabled', 'disabled');
     showElement('#login-container');
+    document.querySelector('#search-button').setAttribute('disabled', 'disabled');
+    document.querySelector('#profile').remove();
   });
 
 document.querySelector('#search-form').addEventListener('submit', async (e) => {
