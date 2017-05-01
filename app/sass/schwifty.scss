@@ -168,10 +168,10 @@ body {
   }
 
   &__image {
-    flex: 0 1 15%;
+    flex: 0 0 15%;
 
     @media(max-width: $mobile) {
-      flex: 0 1 20%;
+      flex: 0 0 20%;
     }
 
     img {

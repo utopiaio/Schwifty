@@ -554,10 +554,10 @@ body {
     .track {
       font-size: 0.8em; } }
   .track__image {
-    flex: 0 1 15%; }
+    flex: 0 0 15%; }
     @media (max-width: 768px) {
       .track__image {
-        flex: 0 1 20%; } }
+        flex: 0 0 20%; } }
     .track__image img {
       width: 100%;
       min-height: 50px;
