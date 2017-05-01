@@ -164,6 +164,11 @@ _store2.default.dispatch((0, _user.asyncUserIsLoggedIn)()).then(() => {
 document.querySelector('#search-form').addEventListener('submit', (() => {
   var _ref = _asyncToGenerator(function* (e) {
     e.preventDefault();
+
+    if (_store2.default.getState().user.token === null) {
+      return;
+    }
+
     (0, _search.search)(document.querySelector('#search-input').value).then(function (matches) {
       if (matches.length === 0) {
         (0, _notie.alert)({

@@ -32,6 +32,11 @@ store
 
 document.querySelector('#search-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  if (store.getState().user.token === null) {
+    return;
+  }
+
   search(document.querySelector('#search-input').value).then((matches) => {
     if (matches.length === 0) {
       alert({
