@@ -11,10 +11,13 @@ function searching(payload) {
 }
 
 function asyncSearching(payload) {
-  return (dispatch, getState) => {
+  return (dispatch, getState) => new Promise((resolve) => {
     if (payload === getState().searching) {
+      resolve();
       return;
     }
+
+    dispatch(searching(payload));
 
     if (payload === true) {
       document.querySelector('#search-button').setAttribute('disabled', 'disabled');
@@ -29,17 +32,21 @@ function asyncSearching(payload) {
           delay: (el, i) => i * 100,
           complete() {
             document.querySelector('.match').innerHTML = '';
+            resolve();
           },
         });
+
+        return;
       }
+
+      resolve();
     } else {
       document.querySelector('#search-button').removeAttribute('disabled');
       document.querySelector('#create-playlist').removeAttribute('disabled');
       document.querySelector('#schwifty-411').innerHTML = '';
+      resolve();
     }
-
-    dispatch(searching(payload));
-  };
+  });
 }
 
 module.exports = {

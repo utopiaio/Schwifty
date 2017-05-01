@@ -7,12 +7,12 @@ import store from 'App/redux/store.js';
 import { asyncSearching } from 'App/redux/actions/searching';
 
 function search(q) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const { user } = store.getState();
 
     const words = q.replace(/ {2}|\?|,|!/g, '').split(/!| |\?/).map(term => term.trim());
 
-    store.dispatch(asyncSearching(true));
+    await store.dispatch(asyncSearching(true));
     Promise.all(words.map(word => fetch(`https://api.spotify.com/v1/search?limit=50&q="${encodeURIComponent(word)}"&type=track`, {
       headers: {
         Authorization: `${user.token.token_type} ${user.token.access_token}`,
