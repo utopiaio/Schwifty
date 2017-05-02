@@ -3,7 +3,7 @@
 
 import _ from 'lodash';
 
-import store from 'App/redux/store.js';
+import store from 'App/redux/store';
 import { asyncSearching } from 'App/redux/actions/searching';
 
 function search(q) {
