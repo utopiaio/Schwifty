@@ -484,8 +484,8 @@ body {
     opacity: 0.5;
     cursor: not-allowed; }
   .button-auth {
-    padding-left: 3em;
-    padding-right: 3em; }
+    padding-left: 2em;
+    padding-right: 2em; }
   .button-danger {
     background-color: #e74c3c;
     color: #ffffff; }
@@ -503,7 +503,7 @@ body {
     @media (max-width: 768px) {
       .container_search {
         flex: 1 1 10%; } }
-  .container_playlist {
+  .container_profile {
     flex: 1 0 30%;
     position: relative;
     flex-direction: row;

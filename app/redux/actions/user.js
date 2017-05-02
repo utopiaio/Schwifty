@@ -57,6 +57,10 @@ function asyncUserIsLoggedIn() {
           },
         }).then(response => response.json());
 
+        if (Object.prototype.hasOwnProperty.call(moi, 'error')) {
+          throw moi;
+        }
+
         localforage.setItem(LF_STORE.TOKEN, token);
         localforage.setItem(LF_STORE.ME, moi);
 

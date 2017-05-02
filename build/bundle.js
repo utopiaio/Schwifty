@@ -1,146 +1,38 @@
-webpackJsonp([0],[
-/* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+webpackJsonp([0],{
+
+/***/ 112:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const MATCH = 'MATCH';
+__webpack_require__(128);
 
-module.exports = {
-  MATCH
-};
+__webpack_require__(127);
 
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-const PLAYLIST_ADD = 'PLAYLIST_ADD';
-const PLAYLIST_REMOVE = 'PLAYLIST_REMOVE';
-const PLAYLIST_EDIT = 'PLAYLIST_EDIT';
-
-module.exports = {
-  PLAYLIST_ADD,
-  PLAYLIST_REMOVE,
-  PLAYLIST_EDIT
-};
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-const SEARCHING = 'SEARCHING';
-
-module.exports = {
-  SEARCHING
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-const ME = 'ME';
-const TOKEN = 'TOKEN';
-
-module.exports = {
-  ME,
-  TOKEN
-};
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _redux = __webpack_require__(6);
-
-var _reduxThunk = __webpack_require__(5);
-
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-var _playlist = __webpack_require__(31);
-
-var _playlist2 = _interopRequireDefault(_playlist);
-
-var _match = __webpack_require__(30);
-
-var _match2 = _interopRequireDefault(_match);
-
-var _user = __webpack_require__(33);
-
-var _user2 = _interopRequireDefault(_user);
-
-var _searching = __webpack_require__(32);
-
-var _searching2 = _interopRequireDefault(_searching);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* global window */
-
-const store = (0, _redux.createStore)((0, _redux.combineReducers)({ searching: _searching2.default, user: _user2.default, playlist: _playlist2.default, match: _match2.default }), { user: { token: null, me: null }, searching: false, playlist: [], match: [] }, window.devToolsExtension ? (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension()) : (0, _redux.applyMiddleware)(_reduxThunk2.default));
-
-module.exports = store;
-
-/***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(35);
-
-__webpack_require__(34);
-
-var _animejs = __webpack_require__(0);
+var _animejs = __webpack_require__(12);
 
 var _animejs2 = _interopRequireDefault(_animejs);
 
-var _notie = __webpack_require__(4);
+var _notie = __webpack_require__(49);
 
-__webpack_require__(36);
+__webpack_require__(129);
 
-var _store = __webpack_require__(11);
+var _store = __webpack_require__(56);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _dom = __webpack_require__(24);
+var _dom = __webpack_require__(117);
 
-var _search = __webpack_require__(27);
+var _search = __webpack_require__(120);
 
-var _user = __webpack_require__(29);
+var _user = __webpack_require__(122);
 
-var _match = __webpack_require__(25);
+var _match = __webpack_require__(118);
 
-var _playlist = __webpack_require__(26);
+var _playlist = __webpack_require__(119);
 
-var _time = __webpack_require__(23);
+var _time = __webpack_require__(116);
 
 var _time2 = _interopRequireDefault(_time);
 
@@ -149,17 +41,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* eslint no-console: 0 */
 /* global window, document, localforage, fetch */
 
-
-_store2.default.subscribe(() => {});
-
-_store2.default.dispatch((0, _user.asyncUserIsLoggedIn)()).then(() => {
-  (0, _dom.showElement)('#profile');
-  document.querySelector('#login-container').remove();
-}, () => {
-  (0, _dom.showElement)('#login-container');
-  document.querySelector('#search-button').setAttribute('disabled', 'disabled');
-  document.querySelector('#profile').remove();
-});
 
 document.querySelector('#search-form').addEventListener('submit', (() => {
   var _ref = _asyncToGenerator(function* (e) {
@@ -223,82 +104,112 @@ document.querySelector('#search-form').addEventListener('submit', (() => {
   };
 })(), false);
 
-document.querySelector('#login').addEventListener('click', () => {
-  (0, _user.authorizeSpotify)();
-}, false);
+const enableProfileClickListener = () => {
+  document.querySelector('#create-playlist').addEventListener('click', () => {
+    const currentMatch = _store2.default.getState().match;
 
-document.querySelector('#create-playlist').addEventListener('click', () => {
-  const currentMatch = _store2.default.getState().match;
-
-  if (currentMatch.length === 0) {
-    (0, _notie.alert)({
-      type: 'warning',
-      text: "I can't create an empty playlist. You're being very un-Schwifty 😒"
-    });
-
-    return;
-  }
-
-  (0, _notie.input)({
-    text: 'Playlist Name',
-    submitText: 'Create Playlist',
-    cancelText: 'Not Today',
-    minlength: '3',
-    placeholder: 'To: Future-X'
-  }, value => {
-    if (value.length === 0) {
+    if (currentMatch.length === 0) {
       (0, _notie.alert)({
-        type: 'info',
-        text: 'ABORTED!'
+        type: 'warning',
+        text: "I can't create an empty playlist. You're being very un-Schwifty 😒"
       });
 
       return;
     }
 
-    _store2.default.dispatch((0, _playlist.asyncAdd)(value, _store2.default.getState().match)).then(() => {
-      (0, _notie.alert)({
-        type: 'success',
-        text: `Playlist <b>${value}</b> has been created`
-      });
+    (0, _notie.input)({
+      text: 'Playlist Name',
+      submitText: 'Create Playlist',
+      cancelText: 'Not Today',
+      minlength: '3',
+      placeholder: 'To: Future-X'
+    }, value => {
+      if (value.length === 0) {
+        (0, _notie.alert)({
+          type: 'info',
+          text: 'ABORTED!'
+        });
 
-      document.querySelector('#schwifty-411').innerHTML = 'Get Schwifty!';
+        return;
+      }
 
-      (0, _animejs2.default)({
-        targets: '.track-list .track',
-        translateY: ['0vh', '100vh'],
-        delay: (el, i) => i * 100,
-        complete() {
-          _store2.default.dispatch((0, _match.match)([]));
-        }
-      });
-    }, err => {
-      (0, _notie.alert)({
-        type: 'error',
-        text: 'Unable to create the playlist 😔'
-      });
+      _store2.default.dispatch((0, _playlist.asyncAdd)(value, _store2.default.getState().match)).then(() => {
+        (0, _notie.alert)({
+          type: 'success',
+          text: `Playlist <b>${value}</b> has been created`
+        });
 
-      console.error('DAMN IT!', err);
+        document.querySelector('#schwifty-411').innerHTML = 'Get Schwifty!';
+
+        (0, _animejs2.default)({
+          targets: '.track-list .track',
+          translateY: ['0vh', '100vh'],
+          delay: (el, i) => i * 100,
+          complete() {
+            _store2.default.dispatch((0, _match.match)([]));
+            document.querySelector('.match').innerHTML = '';
+          }
+        });
+      }, err => {
+        (0, _notie.alert)({
+          type: 'error',
+          text: 'Unable to create the playlist 😔'
+        });
+
+        console.error('DAMN IT!', err);
+      });
     });
-  });
-}, false);
+  }, false);
 
-document.querySelector('#logout').addEventListener('click', () => {
-  (0, _notie.confirm)({
-    text: 'Logout?',
-    submitCallback() {
-      (0, _user.logout)();
-    }
-  });
-}, false);
+  document.querySelector('#logout').addEventListener('click', () => {
+    (0, _notie.confirm)({
+      text: 'Logout?',
+      submitCallback() {
+        (0, _user.logout)();
+      }
+    });
+  }, false);
+};
+
+_store2.default.dispatch((0, _user.asyncUserIsLoggedIn)()).then(() => {
+  document.querySelector('.container_profile').innerHTML = `<div id="profile" class="profile">
+      <img id="profile-image" class="profile__image" src="app/static/placeholder.png">
+      <p id="profile-username" class="profile__username text-mute"></p>
+      <button id="create-playlist" class="button profile__playlist">Create a Playlist</button>
+      <button id="logout" class="button button-auth button-danger profile__logout">Logout</button>
+    </div>`;
+
+  // not sending it via resolve because the store should be the
+  // only source of truth for state - in Redux we trust
+  const { user } = _store2.default.getState();
+  document.querySelector('#profile-username').innerHTML = user.me.id;
+  if (user.me.images.length > 0) {
+    document.querySelector('#profile-image').setAttribute('src', user.me.images[0].url);
+  }
+
+  enableProfileClickListener();
+  (0, _dom.showElement)('#profile');
+}, () => {
+  document.querySelector('.container_profile').innerHTML = `<div id="login-container">
+      <small style="margin-bottom: 0.5em;" class="text-mute">You need to be logged in to get <b>Schwifty</b></small>
+      <button id="login" class="button button-auth">Login with Spotify</button>
+    </div>`;
+  document.querySelector('#search-button').setAttribute('disabled', 'disabled');
+  document.querySelector('#login').addEventListener('click', () => {
+    (0, _user.authorizeSpotify)();
+  }, false);
+  (0, _dom.showElement)('#login-container');
+});
 
 /***/ }),
-/* 20 */
+
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _localforage = __webpack_require__(2);
+var _localforage = __webpack_require__(25);
 
 var _localforage2 = _interopRequireDefault(_localforage);
 
@@ -323,7 +234,8 @@ _localforage2.default.config({
 module.exports = config;
 
 /***/ }),
-/* 21 */
+
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -341,7 +253,8 @@ module.exports = {
 };
 
 /***/ }),
-/* 22 */
+
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -365,7 +278,8 @@ exports.default = (hash = '') => {
 };
 
 /***/ }),
-/* 23 */
+
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -385,13 +299,14 @@ module.exports = (duration = 0) => {
 };
 
 /***/ }),
-/* 24 */
+
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _animejs = __webpack_require__(0);
+var _animejs = __webpack_require__(12);
 
 var _animejs2 = _interopRequireDefault(_animejs);
 
@@ -436,13 +351,14 @@ module.exports = {
 };
 
 /***/ }),
-/* 25 */
+
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _match = __webpack_require__(7);
+var _match = __webpack_require__(52);
 
 function match(payload) {
   return {
@@ -456,13 +372,14 @@ module.exports = {
 };
 
 /***/ }),
-/* 26 */
+
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _playlist = __webpack_require__(8);
+var _playlist = __webpack_require__(53);
 
 function add(payload) {
   return {
@@ -570,21 +487,26 @@ module.exports = {
 };
 
 /***/ }),
-/* 27 */
+
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _lodash = __webpack_require__(3);
+var _reverse = __webpack_require__(47);
 
-var _lodash2 = _interopRequireDefault(_lodash);
+var _reverse2 = _interopRequireDefault(_reverse);
 
-var _store = __webpack_require__(11);
+var _sortBy = __webpack_require__(48);
+
+var _sortBy2 = _interopRequireDefault(_sortBy);
+
+var _store = __webpack_require__(56);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _searching = __webpack_require__(28);
+var _searching = __webpack_require__(121);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -711,15 +633,15 @@ function search(q) {
           }
 
           return {
-            previous: _lodash2.default.reverse(_lodash2.default.sortBy(list.previous, [function (item) {
+            previous: (0, _reverse2.default)((0, _sortBy2.default)([function (item) {
               return item.name.length - (words[index - 1] || 0);
-            }]))[0] || null,
-            self: _lodash2.default.sortBy(list.self, [function (item) {
+            }])(list.previous))[0] || null,
+            self: (0, _sortBy2.default)([function (item) {
               return item.name.length - words[index].length;
-            }])[0] || null,
-            next: _lodash2.default.reverse(_lodash2.default.sortBy(list.next, [function (item) {
+            }])(list.self)[0] || null,
+            next: (0, _reverse2.default)((0, _sortBy2.default)([function (item) {
               return item.name.length - (words[index + 1] || 0);
-            }]))[0] || null
+            }])(list.next))[0] || null
           };
         });
 
@@ -810,17 +732,18 @@ module.exports = {
 };
 
 /***/ }),
-/* 28 */
+
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _animejs = __webpack_require__(0);
+var _animejs = __webpack_require__(12);
 
 var _animejs2 = _interopRequireDefault(_animejs);
 
-var _searching = __webpack_require__(9);
+var _searching = __webpack_require__(54);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -878,23 +801,24 @@ module.exports = {
 };
 
 /***/ }),
-/* 29 */
+
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _localforage = __webpack_require__(2);
+var _localforage = __webpack_require__(25);
 
 var _localforage2 = _interopRequireDefault(_localforage);
 
-var _user = __webpack_require__(10);
+var _user = __webpack_require__(55);
 
-var _localforage3 = __webpack_require__(20);
+var _localforage3 = __webpack_require__(113);
 
-var _spotify = __webpack_require__(21);
+var _spotify = __webpack_require__(114);
 
-var _hashParams = __webpack_require__(22);
+var _hashParams = __webpack_require__(115);
 
 var _hashParams2 = _interopRequireDefault(_hashParams);
 
@@ -955,13 +879,12 @@ function asyncUserIsLoggedIn() {
             return response.json();
           });
 
+          if (Object.prototype.hasOwnProperty.call(moi, 'error')) {
+            throw moi;
+          }
+
           _localforage2.default.setItem(_localforage3.LF_STORE.TOKEN, token);
           _localforage2.default.setItem(_localforage3.LF_STORE.ME, moi);
-
-          document.querySelector('#profile-username').innerHTML = moi.id;
-          if (moi.images.length > 0) {
-            document.querySelector('#profile-image').setAttribute('src', moi.images[0].url);
-          }
 
           dispatch(userToken(token));
           dispatch(userMe(moi));
@@ -1015,13 +938,14 @@ module.exports = {
 };
 
 /***/ }),
-/* 30 */
+
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _match = __webpack_require__(7);
+var _match = __webpack_require__(52);
 
 function reducer(state = [], action) {
   switch (action.type) {
@@ -1036,13 +960,14 @@ function reducer(state = [], action) {
 module.exports = reducer;
 
 /***/ }),
-/* 31 */
+
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _playlist = __webpack_require__(8);
+var _playlist = __webpack_require__(53);
 
 function reducer(state = [], action) {
   switch (action.type) {
@@ -1063,13 +988,14 @@ function reducer(state = [], action) {
 module.exports = reducer;
 
 /***/ }),
-/* 32 */
+
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _searching = __webpack_require__(9);
+var _searching = __webpack_require__(54);
 
 function reducer(state = false, action) {
   switch (action.type) {
@@ -1084,13 +1010,14 @@ function reducer(state = false, action) {
 module.exports = reducer;
 
 /***/ }),
-/* 33 */
+
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _user = __webpack_require__(10);
+var _user = __webpack_require__(55);
 
 function reducer(state = { me: null, token: null }, action) {
   switch (action.type) {
@@ -1108,43 +1035,134 @@ function reducer(state = { me: null, token: null }, action) {
 module.exports = reducer;
 
 /***/ }),
-/* 34 */
+
+/***/ 127:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 35 */
+
+/***/ 128:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 36 */
+
+/***/ 129:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */
+
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(112);
 
+
+/***/ }),
+
+/***/ 52:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const MATCH = 'MATCH';
+
+module.exports = {
+  MATCH
+};
+
+/***/ }),
+
+/***/ 53:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const PLAYLIST_ADD = 'PLAYLIST_ADD';
+const PLAYLIST_REMOVE = 'PLAYLIST_REMOVE';
+const PLAYLIST_EDIT = 'PLAYLIST_EDIT';
+
+module.exports = {
+  PLAYLIST_ADD,
+  PLAYLIST_REMOVE,
+  PLAYLIST_EDIT
+};
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const SEARCHING = 'SEARCHING';
+
+module.exports = {
+  SEARCHING
+};
+
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const ME = 'ME';
+const TOKEN = 'TOKEN';
+
+module.exports = {
+  ME,
+  TOKEN
+};
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _redux = __webpack_require__(51);
+
+var _reduxThunk = __webpack_require__(50);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _playlist = __webpack_require__(124);
+
+var _playlist2 = _interopRequireDefault(_playlist);
+
+var _match = __webpack_require__(123);
+
+var _match2 = _interopRequireDefault(_match);
+
+var _user = __webpack_require__(126);
+
+var _user2 = _interopRequireDefault(_user);
+
+var _searching = __webpack_require__(125);
+
+var _searching2 = _interopRequireDefault(_searching);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* global window */
+
+const store = (0, _redux.createStore)((0, _redux.combineReducers)({ searching: _searching2.default, user: _user2.default, playlist: _playlist2.default, match: _match2.default }), { user: { token: null, me: null }, searching: false, playlist: [], match: [] }, window.devToolsExtension ? (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension()) : (0, _redux.applyMiddleware)(_reduxThunk2.default));
+
+module.exports = store;
 
 /***/ })
-],[51]);
+
+},[272]);

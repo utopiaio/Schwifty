@@ -1,7 +1,8 @@
 /* global fetch */
 /* eslint no-console: 0 */
 
-import _ from 'lodash';
+import reverse from 'lodash/fp/reverse';
+import sortBy from 'lodash/fp/sortBy';
 
 import store from 'App/redux/store';
 import { asyncSearching } from 'App/redux/actions/searching';
@@ -99,9 +100,9 @@ function search(q) {
         }
 
         return {
-          previous: _.reverse(_.sortBy(list.previous, [item => item.name.length - (words[index - 1] || 0)]))[0] || null,
-          self: _.sortBy(list.self, [item => item.name.length - words[index].length])[0] || null,
-          next: _.reverse(_.sortBy(list.next, [item => item.name.length - (words[index + 1] || 0)]))[0] || null,
+          previous: reverse(sortBy([item => item.name.length - (words[index - 1] || 0)])(list.previous))[0] || null,
+          self: sortBy([item => item.name.length - words[index].length])(list.self)[0] || null,
+          next: reverse(sortBy([item => item.name.length - (words[index + 1] || 0)])(list.next))[0] || null,
         };
       });
 

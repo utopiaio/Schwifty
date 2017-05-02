@@ -111,6 +111,7 @@ const enableProfileClickListener = () => {
             delay: (el, i) => i * 100,
             complete() {
               store.dispatch(match([]));
+              document.querySelector('.match').innerHTML = '';
             },
           });
         }, (err) => {
