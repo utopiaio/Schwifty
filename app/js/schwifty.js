@@ -16,18 +16,6 @@ import { match } from 'App/redux/actions/match';
 import { asyncAdd } from 'App/redux/actions/playlist';
 import time from 'App/js/time';
 
-
-store
-  .dispatch(asyncUserIsLoggedIn())
-  .then(() => {
-    showElement('#profile');
-    document.querySelector('#login-container').remove();
-  }, () => {
-    showElement('#login-container');
-    document.querySelector('#search-button').setAttribute('disabled', 'disabled');
-    document.querySelector('#profile').remove();
-  });
-
 document.querySelector('#search-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -78,72 +66,102 @@ document.querySelector('#search-form').addEventListener('submit', async (e) => {
   });
 }, false);
 
-document.querySelector('#login').addEventListener('click', () => {
-  authorizeSpotify();
-}, false);
+const enableProfileClickListener = () => {
+  document.querySelector('#create-playlist').addEventListener('click', () => {
+    const currentMatch = store.getState().match;
 
-document.querySelector('#create-playlist').addEventListener('click', () => {
-  const currentMatch = store.getState().match;
-
-  if (currentMatch.length === 0) {
-    alert({
-      type: 'warning',
-      text: "I can't create an empty playlist. You're being very un-Schwifty 😒",
-    });
-
-    return;
-  }
-
-  input({
-    text: 'Playlist Name',
-    submitText: 'Create Playlist',
-    cancelText: 'Not Today',
-    minlength: '3',
-    placeholder: 'To: Future-X',
-  }, (value) => {
-    if (value.length === 0) {
+    if (currentMatch.length === 0) {
       alert({
-        type: 'info',
-        text: 'ABORTED!',
+        type: 'warning',
+        text: "I can't create an empty playlist. You're being very un-Schwifty 😒",
       });
 
       return;
     }
 
-    store
-      .dispatch(asyncAdd(value, store.getState().match))
-      .then(() => {
+    input({
+      text: 'Playlist Name',
+      submitText: 'Create Playlist',
+      cancelText: 'Not Today',
+      minlength: '3',
+      placeholder: 'To: Future-X',
+    }, (value) => {
+      if (value.length === 0) {
         alert({
-          type: 'success',
-          text: `Playlist <b>${value}</b> has been created`,
+          type: 'info',
+          text: 'ABORTED!',
         });
 
-        document.querySelector('#schwifty-411').innerHTML = 'Get Schwifty!';
+        return;
+      }
 
-        anime({
-          targets: '.track-list .track',
-          translateY: ['0vh', '100vh'],
-          delay: (el, i) => i * 100,
-          complete() {
-            store.dispatch(match([]));
-          },
-        });
-      }, (err) => {
-        alert({
-          type: 'error',
-          text: 'Unable to create the playlist 😔',
-        });
+      store
+        .dispatch(asyncAdd(value, store.getState().match))
+        .then(() => {
+          alert({
+            type: 'success',
+            text: `Playlist <b>${value}</b> has been created`,
+          });
 
-        console.error('DAMN IT!', err);
-      });
+          document.querySelector('#schwifty-411').innerHTML = 'Get Schwifty!';
+
+          anime({
+            targets: '.track-list .track',
+            translateY: ['0vh', '100vh'],
+            delay: (el, i) => i * 100,
+            complete() {
+              store.dispatch(match([]));
+            },
+          });
+        }, (err) => {
+          alert({
+            type: 'error',
+            text: 'Unable to create the playlist 😔',
+          });
+
+          console.error('DAMN IT!', err);
+        });
+    });
+  }, false);
+
+  document.querySelector('#logout').addEventListener('click', () => {
+    confirm({
+      text: 'Logout?',
+      submitCallback() {
+        logout();
+      },
+    });
+  }, false);
+};
+
+store
+  .dispatch(asyncUserIsLoggedIn())
+  .then(() => {
+    document.querySelector('.container_profile').innerHTML = `<div id="profile" class="profile">
+      <img id="profile-image" class="profile__image" src="app/static/placeholder.png">
+      <p id="profile-username" class="profile__username text-mute"></p>
+      <button id="create-playlist" class="button profile__playlist">Create a Playlist</button>
+      <button id="logout" class="button button-auth button-danger profile__logout">Logout</button>
+    </div>`;
+
+    // not sending it via resolve because the store should be the
+    // only source of truth for state - in Redux we trust
+    const { user } = store.getState();
+    document.querySelector('#profile-username').innerHTML = user.me.id;
+    if (user.me.images.length > 0) {
+      document.querySelector('#profile-image').setAttribute('src', user.me.images[0].url);
+    }
+
+    enableProfileClickListener();
+    showElement('#profile');
+  }, () => {
+    document.querySelector('.container_profile').innerHTML = `<div id="login-container">
+      <small style="margin-bottom: 0.5em;" class="text-mute">You need to be logged in to get <b>Schwifty</b></small>
+      <button id="login" class="button button-auth">Login with Spotify</button>
+    </div>`;
+    document.querySelector('#search-button').setAttribute('disabled', 'disabled');
+    document.querySelector('#login').addEventListener('click', () => {
+      authorizeSpotify();
+    }, false);
+    showElement('#login-container');
   });
-}, false);
-
-document.querySelector('#logout').addEventListener('click', () => {
-  confirm({
-    text: 'Logout?',
-    submitCallback() {
-      logout();
-    },
-  });
-}, false);
