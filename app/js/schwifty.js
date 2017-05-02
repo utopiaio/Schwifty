@@ -16,8 +16,6 @@ import { match } from 'App/redux/actions/match';
 import { asyncAdd } from 'App/redux/actions/playlist';
 import time from 'App/js/time';
 
-store.subscribe(() => {
-});
 
 store
   .dispatch(asyncUserIsLoggedIn())
